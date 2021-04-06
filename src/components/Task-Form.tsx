@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { ITask } from "../../shared/types/i-task";
 
 interface ITaskFormProps {
-    createTask: (task: ITask) => void
+    task?: ITask,
+    handleSave?: (task: ITask) => void,
+    handleEmitUpdate?: (task: ITask) => void
 }
 
 const styles = {
@@ -16,62 +18,46 @@ const styles = {
         padding: 0,
         margin: 0
     },
-    descStyle: {
-        padding: 0,
-        margin: 0
-    },
-    editButtonStyle: {
-        position: 'absolute',
-        right: '14%',
-    } as React.CSSProperties,
     saveButtonStyle: {
-        position: 'absolute',
-        right: '14%',
-        marginTop: -100
-    } as React.CSSProperties,
-    deleteButtonStyle: {
-        position: 'absolute',
-        right: '14%',
-        marginTop: 100
-    } as React.CSSProperties,
-    completeButtonStyle: {
-        position: 'absolute',
-        right: '14%',
-        marginTop: -17
-    } as React.CSSProperties,
-    none: {
-        display: 'none'
+        marginTop: 7
     },
     updateFormStyle: {
         display: 'flex',
         flexDirection: 'column',
-        width: '60%',
         justifyContent: 'center',
+        width: '60%',
         alignItems: 'center',
-        marginLeft: '20%'
+        marginLeft: '20%',
+        marginBottom: 20,
     } as React.CSSProperties
 }
 
 const TaskForm = (props: ITaskFormProps) => {
-    let [newTask, setNewTask] = useState({title: '', description: '', complete: false});
+    let emptyTask: ITask = { title: '', description: '', complete: false };
+    let [newTask, setNewTask] = useState(props.task ? props.task : emptyTask);
 
-    const createTask = () => {
-        props.createTask(newTask);
+    const save = () => {
+        props.handleSave(newTask);
+        setNewTask(emptyTask);
     }
 
     const handleFormUpdate = (event) => {
         let field = event.target.name;
-        newTask = {...newTask, [field]: event.target.value}
+        newTask = { ...newTask, [field]: event.target.value }
+        if (props.handleEmitUpdate) {
+            emitUpdate(newTask)
+        }
         setNewTask(newTask);
+    }
+
+    const emitUpdate = (task: ITask) => {
+        props.handleEmitUpdate(task);
     }
 
     return (
         <div>
             < div style={styles.updateFormStyle}>
-                <button className="btn btn-xs btn-success"
-                        style={styles.saveButtonStyle}
-                        onClick={createTask}>Create
-                </button>
+
                 <label htmlFor="title">Task</label>
                 <input id="title"
                        name="title"
@@ -84,7 +70,12 @@ const TaskForm = (props: ITaskFormProps) => {
                        type="text"
                        value={newTask.description}
                        onChange={handleFormUpdate}/>
-                <label htmlFor="date">Due</label>
+                {!props.task &&
+                <button className="btn btn-xs btn-success"
+                        style={styles.saveButtonStyle}
+                        onClick={save}>Save
+                </button>
+                }
             </div>
         </div>
     );

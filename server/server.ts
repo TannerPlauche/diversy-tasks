@@ -1,6 +1,6 @@
 import { Configuration, Inject, PlatformApplication } from "@tsed/common";
-import * as bodyParser from "body-parser";
-import compress from "compression";
+import bodyParser from "body-parser";
+// import compress from "compression";
 import cookieParser from "cookie-parser";
 import methodOverride from "method-override";
 import cors from 'cors';
@@ -9,7 +9,10 @@ const rootDir = __dirname;
 
 @Configuration({
     rootDir,
-    acceptMimes: ["application/json"]
+    acceptMimes: ["application/json"],
+    serveStatic: {
+        "/": `${rootDir}/../build`
+    }
 })
 export class Server {
     @Inject()
@@ -26,7 +29,7 @@ export class Server {
         this.app
             .use(cors())
             .use(cookieParser())
-            .use(compress({}))
+            // .use(compress({}))
             .use(methodOverride())
             .use(bodyParser.json())
             .use(bodyParser.urlencoded({

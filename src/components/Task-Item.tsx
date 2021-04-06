@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ITask } from "../../shared/types/i-task";
 import { type } from "os";
+import TaskForm from "./Task-Form";
 
 interface ITaskItemProps {
     task: ITask,
@@ -59,8 +60,9 @@ const styles = {
 }
 
 const TaskItem = (props: ITaskItemProps) => {
-    let {task} = props;
-    let [updatedTask, setUpdatedTask] = useState({...task});
+    let { task } = props;
+    let [updatedTask, setUpdatedTask] = useState({ ...task });
+    updatedTask = updatedTask as ITask;
     let isSelected = props.task.id === props.selectedTaskId;
 
     const selectTask = () => props.selectTask(task.id);
@@ -69,75 +71,81 @@ const TaskItem = (props: ITaskItemProps) => {
 
     const handleFormUpdate = (event) => {
         let field = event.target.name;
-        updatedTask = {...updatedTask, [field]: event.target.value}
+        updatedTask = { ...updatedTask, [field]: event.target.value }
         setUpdatedTask(updatedTask);
     }
 
     const toggleComplete = (event) => {
-        updatedTask = {...updatedTask, complete: event.target.checked};
+        updatedTask = { ...updatedTask, complete: event.target.checked };
         setUpdatedTask(updatedTask);
-        updateTask();
+        updateTask(updatedTask);
     }
 
-    const updateTask = () => {
-        props.updateTask(updatedTask);
+    const updateTask = (task?: ITask) => {
+        props.updateTask(task);
     }
 
     const deleteTask = () => {
         props.deleteTask(task.id);
     }
 
+    const handleEmitUpdate = (task: ITask) => {
+        updatedTask = { ...task };
+        setUpdatedTask(updatedTask);
+    }
+
     return (
         <div>
             {
                 isSelected ?
-                < div style={styles.updateFormStyle}>
-                    <button className="btn btn-xs btn-success"
-                            style={styles.saveButtonStyle}
-                            onClick={updateTask}>save
-                    </button>
-                    <button className="btn btn-xs btn-secondary"
-                            style={styles.editButtonStyle}
-                            onClick={cancelSelection}>cancel
-                    </button>
-                    <button className="btn btn-xs btn-danger"
-                            style={styles.deleteButtonStyle}
-                            onClick={deleteTask}>Delete
-                    </button>
-                    <label htmlFor="title">Task</label>
-                    <input id="title"
-                           name="title"
-                           type="text"
-                           value={updatedTask.title}
-                           onChange={handleFormUpdate}/>
-                    <label htmlFor="desc">Description</label>
-                    <input id="desc"
-                           name="description"
-                           type="text"
-                           value={updatedTask.description}
-                           onChange={handleFormUpdate}/>
-                    <label htmlFor="date">Due</label>
-                </div>
-                           :
-                <div className="task-item"
-                     style={styles.itemStyle}>
-                    <button className="btn btn-xs btn-primary"
-                            style={isSelected ? styles.none : styles.editButtonStyle}
-                            onClick={selectTask}>edit
-                    </button>
-                    < div>
-                        < h3 className="task-title"
-                             style={{
-                                 ...styles.headerStyle,
-                                 textDecoration: task.complete ? 'strikethrough' : 'none'
-                             }}>{task.title}</h3>
-                        <p style={styles.descStyle}>{task.description}</p>
+                    < div style={styles.updateFormStyle}>
+                        <button className="btn btn-xs btn-success"
+                                style={styles.saveButtonStyle}
+                                onClick={() => updateTask(updatedTask)}>save
+                        </button>
+                        <button className="btn btn-xs btn-secondary"
+                                style={styles.editButtonStyle}
+                                onClick={cancelSelection}>cancel
+                        </button>
+                        <button className="btn btn-xs btn-danger"
+                                style={styles.deleteButtonStyle}
+                                onClick={deleteTask}>Delete
+                        </button>
+                        <TaskForm handleEmitUpdate={handleEmitUpdate}
+                                  task={updatedTask}/>
+                        {/*<label htmlFor="title">Task</label>*/}
+                        {/*<input id="title"*/}
+                        {/*       name="title"*/}
+                        {/*       type="text"*/}
+                        {/*       value={updatedTask.title}*/}
+                        {/*       onChange={handleFormUpdate}/>*/}
+                        {/*<label htmlFor="desc">Description</label>*/}
+                        {/*<input id="desc"*/}
+                        {/*       name="description"*/}
+                        {/*       type="text"*/}
+                        {/*       value={updatedTask.description}*/}
+                        {/*       onChange={handleFormUpdate}/>*/}
                     </div>
-                    <input type="checkbox"
-                           checked={updatedTask.complete}
-                           onChange={toggleComplete}
-                           style={isSelected ? styles.none : styles.completeButtonStyle}/>
-                </div>
+                    :
+                    <div className="task-item"
+                         style={styles.itemStyle}>
+                        <button className="btn btn-xs btn-primary"
+                                style={isSelected ? styles.none : styles.editButtonStyle}
+                                onClick={selectTask}>edit
+                        </button>
+                        < div>
+                            < h3 className="task-title"
+                                 style={{
+                                     ...styles.headerStyle,
+                                     textDecoration: task.complete ? 'strikethrough' : 'none'
+                                 }}>{task.title}</h3>
+                            <p style={styles.descStyle}>{task.description}</p>
+                        </div>
+                        <input type="checkbox"
+                               checked={updatedTask.complete}
+                               onChange={toggleComplete}
+                               style={isSelected ? styles.none : styles.completeButtonStyle}/>
+                    </div>
             }
         </div>
 

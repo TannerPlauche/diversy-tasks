@@ -1,6 +1,7 @@
 import { ITask } from "../../../shared/types/i-task";
-import { findIndex, lensProp, merge, prepend, propEq, remove, set, update } from 'ramda';
-import { TaskActionsTypes } from "./task-actions";
+import { append, filter, findIndex, lensProp, merge, prepend, propEq, remove, set, update } from 'ramda';
+import { filterTasks, TaskActionsTypes } from "./task-actions";
+import { filterTypes } from "../../types/filter-enum";
 
 interface ITaskReducerState {
     tasks: ITask[];
@@ -18,12 +19,14 @@ const initialState: ITaskReducerState = {
 const taskReducer = (state: ITaskReducerState = initialState, action): ITaskReducerState => {
     switch (action.type) {
         case TaskActionsTypes.FETCH_TASKS:
-            return set(lensProp('tasks'), action.payload, state);
+            return merge(state, { tasks: action.payload, filteredTasks: action.payload });
         case TaskActionsTypes.CREATE_TASK:
-            return set(
-                lensProp('tasks'),
-                prepend(action.payload, state.tasks),
-                state
+            return merge(
+                state,
+                {
+                    tasks: append(action.payload, state.tasks),
+                    filteredTasks: append(action.payload, state.tasks)
+                }
             );
         case TaskActionsTypes.SELECT_TASK:
             return set(lensProp('selectedTaskId'), action.payload, state);
@@ -35,18 +38,49 @@ const taskReducer = (state: ITaskReducerState = initialState, action): ITaskRedu
                         findIndex(propEq('id', action.payload.id), state.tasks),
                         action.payload,
                         state.tasks),
+                    filteredTasks: update(
+                        findIndex(propEq('id', action.payload.id), state.tasks),
+                        action.payload,
+                        state.tasks),
                     selectedTaskId: null
                 }
             );
         case TaskActionsTypes.REMOVE_TASK:
-            return set(
-                lensProp('tasks'),
-                remove(
-                    findIndex(propEq('id', action.payload.id), state.tasks),
-                    1,
-                    state.tasks
-                ),
-                state);
+            return merge(state,
+                {
+                    tasks: remove(
+                        findIndex(propEq('id', action.payload.id), state.tasks),
+                        1,
+                        state.tasks),
+                    filteredTasks: remove(
+                        findIndex(propEq('id', action.payload.id), state.tasks),
+                        1,
+                        state.tasks)
+                }
+            );
+        case TaskActionsTypes.FILTER_TASKS:
+            switch (action.payload) {
+                case filterTypes.all:
+                    return set(
+                        lensProp('filteredTasks'),
+                        [...state.tasks],
+                        state
+                    );
+                case filterTypes.complete:
+                    return set(
+                        lensProp('filteredTasks'),
+                        filter((task: ITask) => task.complete, [...state.tasks]),
+                        state
+                    );
+                case filterTypes.incomplete:
+                    return set(
+                        lensProp('filteredTasks'),
+                        filter((task: ITask) => !task.complete, [...state.tasks]),
+                        state
+                    );
+                default:
+                    return state;
+            }
         default:
             return state;
     }

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { AxiosResponse } from 'axios';
 import { ITask } from "../../../shared/types/i-task";
 import { IAction } from "../../../shared/types/i-action";
+import { filterTypes } from "../../types/filter-enum";
 
 export enum TaskActionsTypes {
     CREATE_TASK = 'CREATE_TASK',
@@ -9,6 +10,7 @@ export enum TaskActionsTypes {
     SELECT_TASK = 'SELECT_TASK',
     REPLACE_TASK = 'REPLACE_TASK',
     REMOVE_TASK = 'REMOVE_TASK',
+    FILTER_TASKS = 'FILTER_TASKS',
 }
 
 export const fetchTasks = (dispatch) => {
@@ -53,3 +55,5 @@ export const deleteTask = (dispatch, id: string) => {
 }
 
 const removeTask = (id: string): IAction => ({type: TaskActionsTypes.REMOVE_TASK, payload: id});
+
+export const filterTasks = (dispatch, filter: filterTypes) => dispatch({type: TaskActionsTypes.FILTER_TASKS, payload: filter});
