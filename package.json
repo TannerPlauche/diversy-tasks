@@ -32,9 +32,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "serve": "node server/index.js",
+    "start": "node server/index.js",
     "serve:prod": "cross-env NODE_ENV=production node dist/server/index.js",
     "buildServe": "tsc server/index.ts",
     "test": "react-scripts test",
@@ -67,5 +65,8 @@
     "@tsed/schema": "^6.38.2",
     "@types/multer": "^1.4.5",
     "express": "4"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
