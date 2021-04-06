@@ -34,7 +34,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "serve": "nodemon --watch \"src/**/*.ts\" --ignore \"node_modules/**/*\" --exec ts-node server/index.ts",
+    "serve": "node server/index.js",
     "serve:prod": "cross-env NODE_ENV=production node dist/server/index.js",
     "buildServe": "tsc server/index.ts",
     "test": "react-scripts test",

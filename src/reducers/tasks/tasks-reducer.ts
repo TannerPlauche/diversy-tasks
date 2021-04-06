@@ -46,16 +46,14 @@ const taskReducer = (state: ITaskReducerState = initialState, action): ITaskRedu
                 }
             );
         case TaskActionsTypes.REMOVE_TASK:
+            let updatedTasks = remove(
+                findIndex(propEq('id', action.payload), state.tasks),
+                1,
+                state.tasks);
             return merge(state,
                 {
-                    tasks: remove(
-                        findIndex(propEq('id', action.payload.id), state.tasks),
-                        1,
-                        state.tasks),
-                    filteredTasks: remove(
-                        findIndex(propEq('id', action.payload.id), state.tasks),
-                        1,
-                        state.tasks)
+                    tasks: updatedTasks,
+                    filteredTasks: updatedTasks
                 }
             );
         case TaskActionsTypes.FILTER_TASKS:

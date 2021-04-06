@@ -73,7 +73,8 @@ const TaskForm = (props: ITaskFormProps) => {
                 {!props.task &&
                 <button className="btn btn-xs btn-success"
                         style={styles.saveButtonStyle}
-                        onClick={save}>Save
+                        onClick={save}
+                disabled={!newTask.title}>Save
                 </button>
                 }
             </div>
