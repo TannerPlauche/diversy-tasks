@@ -1,6 +1,6 @@
 import { ITask } from "../../../shared/types/i-task";
-import { append, filter, findIndex, lensProp, merge, prepend, propEq, remove, set, update } from 'ramda';
-import { filterTasks, TaskActionsTypes } from "./task-actions";
+import { append, filter, findIndex, lensProp, merge, propEq, remove, set, update } from 'ramda';
+import { TaskActionsTypes } from "./task-actions";
 import { filterTypes } from "../../types/filter-enum";
 
 interface ITaskReducerState {

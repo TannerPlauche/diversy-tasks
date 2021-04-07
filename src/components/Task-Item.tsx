@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { ITask } from "../../shared/types/i-task";
-import { type } from "os";
 import TaskForm from "./Task-Form";
 
 interface ITaskItemProps {
@@ -13,6 +12,7 @@ interface ITaskItemProps {
 
 const styles = {
     itemStyle: {
+        minHeight: 70,
         padding: 7,
         borderColor: 'lightgray',
         borderWidth: 1,
@@ -23,6 +23,7 @@ const styles = {
         margin: 0
     },
     descStyle: {
+        minHeight: 30,
         padding: 0,
         margin: 0
     },
@@ -39,6 +40,11 @@ const styles = {
         position: 'absolute',
         right: '14%',
         marginTop: 100
+    } as React.CSSProperties,
+    removeButtonStyle: {
+        position: 'absolute',
+        right: '14%',
+        marginTop: 30,
     } as React.CSSProperties,
     completeButtonStyle: {
         position: 'absolute',
@@ -68,12 +74,6 @@ const TaskItem = (props: ITaskItemProps) => {
     const selectTask = () => props.selectTask(task.id);
 
     const cancelSelection = () => props.selectTask(null);
-
-    const handleFormUpdate = (event) => {
-        let field = event.target.name;
-        updatedTask = { ...updatedTask, [field]: event.target.value }
-        setUpdatedTask(updatedTask);
-    }
 
     const toggleComplete = (event) => {
         updatedTask = { ...updatedTask, complete: event.target.checked };
@@ -113,18 +113,6 @@ const TaskItem = (props: ITaskItemProps) => {
                         </button>
                         <TaskForm handleEmitUpdate={handleEmitUpdate}
                                   task={updatedTask}/>
-                        {/*<label htmlFor="title">Task</label>*/}
-                        {/*<input id="title"*/}
-                        {/*       name="title"*/}
-                        {/*       type="text"*/}
-                        {/*       value={updatedTask.title}*/}
-                        {/*       onChange={handleFormUpdate}/>*/}
-                        {/*<label htmlFor="desc">Description</label>*/}
-                        {/*<input id="desc"*/}
-                        {/*       name="description"*/}
-                        {/*       type="text"*/}
-                        {/*       value={updatedTask.description}*/}
-                        {/*       onChange={handleFormUpdate}/>*/}
                     </div>
                     :
                     <div className="task-item"
@@ -133,11 +121,18 @@ const TaskItem = (props: ITaskItemProps) => {
                                 style={isSelected ? styles.none : styles.editButtonStyle}
                                 onClick={selectTask}>edit
                         </button>
+                        {updatedTask.complete &&  <button className="btn btn-xs btn-danger"
+                                style={styles.removeButtonStyle}
+                                onClick={deleteTask}>Delete
+                        </button>}
                         < div>
                             < h3 className="task-title"
                                  style={{
                                      ...styles.headerStyle,
-                                     textDecoration: task.complete ? 'strikethrough' : 'none'
+                                     color: task.complete ? 'darkred' : 'none',
+                                     textDecoration: task.complete ? 'line-through' : 'none',
+                                     textDecorationColor: task.complete ? 'black' : 'white',
+                                     textDecorationThickness: task.complete ? 3 : 0,
                                  }}>{task.title}</h3>
                             <p style={styles.descStyle}>{task.description}</p>
                         </div>

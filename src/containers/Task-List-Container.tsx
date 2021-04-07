@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Component, SyntheticEvent } from 'react';
+import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { ITask } from "../../shared/types/i-task";
 import {

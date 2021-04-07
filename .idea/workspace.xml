@@ -2,22 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d161fd32-cb33-45cd-8520-e401c855d2a1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/server/services/task-service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/asset-manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/main.f5441c1d.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/main.f5441c1d.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/server.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/server/controllers/task-controller.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/server/services/task-service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/shared/types/i-task.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/task-controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/task-controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/js/main.d507e5de.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/js/main.d507e5de.chunk.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/jsonDB.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/jsonDB.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/services/task-service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Task-Form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Task-Form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Task-Item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Task-Item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Task-List-Container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Task-List-Container.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/reducers/tasks/tasks-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/tasks/tasks-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +21,31 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1617741578" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1617741577" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="ProjectId" id="1qlDdxxMXoXD1Hke0PCm1a8Yv7f" />
   <component name="ProjectViewState">
@@ -82,6 +102,8 @@
       <workItem from="1617662363746" duration="428000" />
       <workItem from="1617662811729" duration="20272000" />
       <workItem from="1617725477185" duration="14238000" />
+      <workItem from="1617741015629" duration="2580000" />
+      <workItem from="1617805901376" duration="1210000" />
     </task>
     <servers />
   </component>
@@ -90,6 +112,7 @@
     <option name="exactExcludedFiles">
       <list>
         <option value="$PROJECT_DIR$/shared/types/i-task.js" />
+        <option value="$PROJECT_DIR$/server/index.js" />
       </list>
     </option>
   </component>
@@ -98,9 +121,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="304" y="184" width="1071" height="706" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1617649813106" />
-    <state x="566" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1617650866444">
-      <screen x="0" y="0" width="1680" height="1050" />
+    <state x="-1273" y="319" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1617741904221">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
+    <state x="-1273" y="319" key="#com.intellij.fileTypes.FileTypeChooser/-2105.1080.1504.976/-3840.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1617741904221" />
     <state x="566" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1617650866444" />
     <state x="-1230" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1617735493393">
       <screen x="-1920" y="0" width="1920" height="1040" />
@@ -186,10 +210,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="640" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1680.1050@0.0.1680.1050" timestamp="1617672606359" />
-    <state x="-1301" y="261" width="680" height="562" key="find.popup" timestamp="1617726968027">
+    <state x="-1301" y="261" width="680" height="562" key="find.popup" timestamp="1617807116645">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1301" y="261" width="680" height="562" key="find.popup/-2105.1080.1504.976/-3840.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1617726968027" />
+    <state x="-1301" y="261" width="680" height="562" key="find.popup/-2105.1080.1504.976/-3840.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1617807116645" />
     <state x="542" y="264" width="595" height="522" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1617683722611" />
     <state x="-1304" y="240" key="run.anything.popup" timestamp="1617740269785">
       <screen x="-1920" y="0" width="1920" height="1040" />
@@ -207,7 +231,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/express/controllers/task-controller.js</url>
           <line>33</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
